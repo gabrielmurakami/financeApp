@@ -1,5 +1,5 @@
 <h1>App de gestão financeira</h1>
-<p>Aplicativo mobile para gestão financeira.</p>
+<p>Aplicativo mobile para gestão financeira usando React Native com o Expo.</p>
 <p>Usando como guia um vídeo do Sujeito Programador.</p>
 <h3>> AndroidVersion:</h2>
 <div style='display: flex; flex-direction: row; alignItems: center; justify-content: center'>
