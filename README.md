@@ -1,7 +1,7 @@
 <h1>App de gestão financeira</h1>
 <p>Aplicativo mobile para gestão financeira.</p>
 <p>Usando como guia um vídeo do Sujeito Programador.</p>
-<div style='display: flex; flex-direction: row'>
+<div style='display: flex; flex-direction: row; alignItems: center; justify-content: center'>
 <img src='https://iili.io/XCezsn.png' alt=' Página inicial do projeto' width='292'>
 <img src='https://iili.io/XCexWX.png' alt=' Página inicial do projeto' width='292'>
 </div>
