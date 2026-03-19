@@ -1,85 +1,113 @@
-import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import React from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import { MotiView } from 'moti';
 
-import { MotiView } from 'moti'
-
-export default function Balance({ saldo, gastos }) {
+export default function Balance({ saldo, gastos, hideValues }) {
   return (
     <MotiView
       style={styles.container}
       from={{
-        rotateX: '-100deg',
-        opacity: 0
+        translateY: 30,
+        opacity: 0,
       }}
       animate={{
-        rotateX: '0deg',
-        opacity: 1
+        translateY: 0,
+        opacity: 1,
       }}
       transition={{
-        type: 'timing',
-        duration: 300,
-        delay: 900
+        type: 'spring',
+        damping: 18,
+        stiffness: 70,
+        delay: 250,
       }}
     >
       <View style={styles.item}>
-        <Text style={styles.itemTitle}>Saldo</Text>
+        <Text style={styles.itemTitle}>Saldo Disponível</Text>
         <View style={styles.content}>
           <Text style={styles.currencySymbol}>R$</Text>
-          <Text style={styles.balance}>{saldo}</Text>
+          <Text style={styles.balance}>
+            {hideValues ? '••••' : saldo}
+          </Text>
         </View>
       </View>
 
+      <View style={styles.divider} />
+
       <View style={styles.item}>
-        <Text style={styles.itemTitle}>Gastos</Text>
+        <Text style={styles.itemTitle}>Saídas</Text>
         <View style={styles.content}>
           <Text style={styles.currencySymbol}>R$</Text>
-          <Text style={styles.expenses}>{gastos}</Text>
+          <Text style={styles.expenses}>
+            {hideValues ? '••••' : gastos}
+          </Text>
         </View>
       </View>
     </MotiView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(24, 24, 27, 0.95)', // zinc-900 with transparency
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingStart: 18,
-    paddingEnd: 18,
-    marginTop: -24,
-    marginStart: 14,
-    marginEnd: 14,
-    borderRadius: 4,
-    paddingTop: 22,
-    paddingBottom: 22,
-    zIndex: 99
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    marginTop: -32,
+    marginHorizontal: 20,
+    borderRadius: 24,
+    paddingVertical: 24,
+    zIndex: 99,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.03)',
   },
 
-  item: {},
+  divider: {
+    height: 40,
+    width: 1,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+  },
+
+  item: {
+    flex: 1,
+    alignItems: 'center',
+  },
 
   itemTitle: {
-    fontSize: 20,
-    color: '#dadada'
+    fontSize: 14,
+    color: '#a1a1aa',
+    fontWeight: '500',
+    marginBottom: 6,
   },
 
   content: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   currencySymbol: {
-    color: '#dadada',
-    marginRight: 6
+    color: '#a1a1aa',
+    marginRight: 4,
+    fontSize: 16,
+    fontWeight: '600',
   },
 
   balance: {
-    fontSize: 22,
-    color: '#2ecc71'
+    fontSize: 24,
+    color: '#34d399', // emerald-400
+    fontWeight: 'bold',
+    letterSpacing: -0.5,
   },
 
   expenses: {
-    fontSize: 22,
-    color: '#e74c3c'
+    fontSize: 24,
+    color: '#f43f5e', // rose-500
+    fontWeight: 'bold',
+    letterSpacing: -0.5,
   }
-})
+});
